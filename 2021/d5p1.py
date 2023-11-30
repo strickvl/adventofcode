@@ -522,11 +522,8 @@ def reorder_rules(rules):
         x2 = rule[1][0]
         y2 = rule[1][1]
 
-        if x1 > x2:
+        if x1 > x2 or x1 == x2 and y1 >= y2:
             rule[0], rule[1] = rule[1], rule[0]
-        elif x1 == x2 and y1 >= y2:
-            rule[0], rule[1] = rule[1], rule[0]
-
     return output
 
 
@@ -546,9 +543,8 @@ def generate_grid_map(input_grid, rules):
         x2 = rule[1][0]
         y2 = rule[1][1]
         if is_horizontal_or_vertical(x1, y1, x2, y2):
-            for x_val in range(x1, x2 + 1):
-                for y_val in range(y1, y2 + 1):
-                    place_mark(output_grid, y_val, x_val)
+            for x_val, y_val in itertools.product(range(x1, x2 + 1), range(y1, y2 + 1)):
+                place_mark(output_grid, y_val, x_val)
     return output_grid
 
 

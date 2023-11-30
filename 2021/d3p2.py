@@ -1082,11 +1082,7 @@ for val in range(len(co2_generator_options[0])):
         else:
             one_count += 1
 
-    if zero_count < one_count or zero_count == one_count:
-        most_common = "0"
-    else:
-        most_common = "1"
-
+    most_common = "0" if zero_count < one_count or zero_count == one_count else "1"
     co2_generator_options = [
         option
         for option in co2_generator_options
